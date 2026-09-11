@@ -1,36 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSTEMS & ARTIFICIAL INTELLIGENCE</title>
+    <title>THE LONE ECHO // Monochrome Wolf Sanctuary</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts for Gothic Serif & Clean Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800;900&family=Inter:wght@200;300;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        playfair: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
                     colors: {
-                        cyber: {
-                            black: '#08090d',
-                            card: '#0f131d',
-                            cyan: '#00f0ff',
-                            purple: '#a855f7',
-                            pink: '#ff007f',
-                            green: '#00ff88',
-                            blue: '#3b82f6'
+                        haunt: {
+                            950: '#030303',
+                            900: '#080808',
+                            850: '#0f0f0f',
+                            800: '#171717',
+                            700: '#262626',
+                            600: '#404040',
+                            300: '#d4d4d4',
+                            100: '#f5f5f5',
                         }
                     },
-                    fontFamily: {
-                        orbitron: ['Orbitron', 'sans-serif'],
-                        rajdhani: ['Rajdhani', 'sans-serif'],
-                        mono: ['Fira Code', 'monospace']
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'flicker': 'flicker 3s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        flicker: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.6' },
+                            '70%': { opacity: '0.9' },
+                            '85%': { opacity: '0.4' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        }
                     }
                 }
             }
@@ -38,435 +58,594 @@
     </script>
 
     <style>
-        body {
-            background-color: #08090d;
-            color: #e2e8f0;
-            font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Glassmorphism background */
-        .glass-panel {
-            background: rgba(15, 19, 29, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-        }
-
-        .glass-card {
-            background: rgba(20, 26, 40, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .glass-card:hover {
-            border-color: rgba(0, 240, 255, 0.4);
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        /* Glowing text effects */
-        .glow-cyan {
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.7), 0 0 20px rgba(0, 240, 255, 0.4);
-        }
-
-        .glow-pink {
-            text-shadow: 0 0 10px rgba(255, 0, 127, 0.7), 0 0 20px rgba(255, 0, 127, 0.4);
-        }
-
-        /* Animated equalizers */
-        .eq-bar {
-            animation: bounce 1.2s infinite ease-in-out alternate;
-        }
-
-        @keyframes bounce {
-            0% { height: 15%; }
-            100% { height: 100%; }
-        }
-
-        /* Custom Scrollbar */
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #08090d;
+            background: #030303;
         }
         ::-webkit-scrollbar-thumb {
-            background: #1e293b;
-            border-radius: 4px;
+            background: #333333;
+            border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #00f0ff;
+            background: #666666;
         }
 
-        /* Pulse Grid Background */
-        .bg-grid {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(0, 240, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(0, 240, 255, 0.03) 1px, transparent 1px);
+        /* Dark Film Grain Overlay */
+        .grain-bg {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+        }
+
+        /* Image Grayscale & High Contrast Tone */
+        .mono-image {
+            filter: grayscale(100%) contrast(125%) brightness(90%);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mono-image:hover {
+            filter: grayscale(100%) contrast(140%) brightness(105%);
+            transform: scale(1.02);
+        }
+
+        /* Custom glow effects */
+        .moon-glow {
+            box-shadow: 0 0 80px 20px rgba(255, 255, 255, 0.08);
+        }
+
+        /* Text stroke for haunting headlines */
+        .text-stroke {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+        .text-stroke:hover {
+            color: #ffffff;
+            transition: color 0.5s ease;
+        }
+
+        /* Audio scrubber custom range input */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: #262626;
+            border-radius: 4px;
+            height: 4px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ffffff;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            transition: transform 0.1s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+        }
+
+        /* Canvas styling */
+        #atmosphereCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
         }
     </style>
 </head>
-<body class="relative min-h-screen bg-grid selection:bg-cyber-cyan selection:text-black">
+<body class="bg-haunt-950 text-neutral-300 font-sans selection:bg-neutral-100 selection:text-black min-h-screen relative overflow-x-hidden grain-bg">
 
-    <!-- Canvas Background for Particle Nodes -->
-    <canvas id="neuralCanvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+    <!-- Canvas for Particle Mist & Audio Spectrum Overlay -->
+    <canvas id="atmosphereCanvas"></canvas>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 w-full glass-panel border-b border-cyber-cyan/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <!-- Navigation / Header -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-haunt-950/80 backdrop-blur-md border-b border-neutral-900 px-6 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan flex items-center justify-center text-cyber-cyan shadow-[0_0_15px_rgba(0,240,255,0.3)]">
-                    <i class="fa-solid fa-microchip text-xl animate-pulse"></i>
-                </div>
-                <span class="font-orbitron font-extrabold text-xl tracking-wider text-white">
-                    SYNAPSE<span class="text-cyber-cyan">.AI</span>
+                <i class="fa-solid fa-wolf-pack-white text-2xl text-neutral-100 animate-pulse"></i>
+                <span class="font-cinzel text-lg tracking-[0.3em] font-extrabold text-neutral-100 uppercase">
+                    CANIS <span class="text-neutral-500 font-light">LUPUS</span>
                 </span>
             </div>
 
-            <nav class="hidden md:flex space-x-8 font-orbitron text-xs tracking-widest uppercase">
-                <a href="#overview" class="hover:text-cyber-cyan transition-colors">System Core</a>
-                <a href="#architecture" class="hover:text-cyber-cyan transition-colors">Architecture</a>
-                <a href="#intelligence" class="hover:text-cyber-cyan transition-colors">Artificial Intelligence</a>
-                <a href="#terminal" class="hover:text-cyber-cyan transition-colors">Neural Terminal</a>
+            <nav class="hidden md:flex items-center space-x-8 text-xs tracking-[0.2em] font-cinzel text-neutral-400">
+                <a href="#hero" class="hover:text-white transition-colors">SANCTUARY</a>
+                <a href="#gallery" class="hover:text-white transition-colors">VISAGES</a>
+                <a href="#lore" class="hover:text-white transition-colors">ECHOES</a>
+                <a href="#audio-section" class="hover:text-white transition-colors">AUDIO</a>
             </nav>
 
-            <div class="flex items-center space-x-3">
-                <div id="statusBadge" class="flex items-center space-x-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span>SYSTEM ONLINE</span>
-                </div>
+            <div class="flex items-center space-x-4">
+                <button id="quickPlayBtn" class="flex items-center space-x-2 bg-neutral-900 hover:bg-neutral-800 text-neutral-200 border border-neutral-700 px-4 py-1.5 rounded-full text-xs font-cinzel tracking-wider transition-all">
+                    <i id="quickPlayIcon" class="fa-solid fa-play"></i>
+                    <span id="quickPlayText">UNSEAL SOUND</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-32 space-y-24">
+    <!-- Main Container -->
+    <main class="relative z-20 pt-20">
 
         <!-- Hero Section -->
-        <section id="overview" class="pt-8 text-center space-y-8">
-            <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card border border-cyber-cyan/30 text-cyber-cyan text-sm font-mono mb-2">
-                <i class="fa-solid fa-network-wired"></i>
-                <span>NEXT-GEN SYSTEM ARCHITECTURE & AI INTEGRATION</span>
-            </div>
-            
-            <h1 class="font-orbitron text-4xl md:text-6xl lg:text-7xl font-black tracking-tight text-white uppercase leading-tight">
-                Architecting The <br/>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-pink glow-cyan">
-                    Synthetic Mind
-                </span>
-            </h1>
+        <section id="hero" class="min-h-[90vh] flex items-center justify-center relative px-6 py-16 overflow-hidden">
+            <!-- Simulated Moon Background Element -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 md:w-[500px] md:h-[500px] rounded-full bg-gradient-to-b from-neutral-200/10 via-neutral-400/5 to-transparent border border-neutral-800/40 moon-glow pointer-events-none animate-float"></div>
 
-            <p class="max-w-3xl mx-auto text-slate-300 text-lg md:text-xl font-light leading-relaxed">
-                Explore the convergence of modern system infrastructure and advanced artificial intelligence algorithms. From autonomous neural agents to distributed computing matrices.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-4 pt-4">
-                <a href="#terminal" class="px-8 py-3 rounded-lg bg-cyber-cyan text-black font-orbitron font-bold tracking-wider hover:bg-cyan-300 transition-all shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center space-x-2">
-                    <i class="fa-solid fa-terminal"></i>
-                    <span>LAUNCH TERMINAL</span>
-                </a>
-                <a href="#intelligence" class="px-8 py-3 rounded-lg glass-panel text-white font-orbitron font-bold tracking-wider hover:border-cyber-cyan/60 transition-all flex items-center space-x-2">
-                    <i class="fa-solid fa-brain"></i>
-                    <span>EXPLORE AI MODELS</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- Metric Counter Cards -->
-        <section class="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div class="glass-card p-6 rounded-xl border border-slate-800">
-                <div class="text-cyber-cyan text-sm font-mono mb-1">LATENCY</div>
-                <div class="text-3xl font-orbitron font-bold text-white">0.42 <span class="text-xs text-slate-400">ms</span></div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
-                    <div class="bg-cyber-cyan h-full w-[85%]"></div>
-                </div>
-            </div>
-            <div class="glass-card p-6 rounded-xl border border-slate-800">
-                <div class="text-cyber-purple text-sm font-mono mb-1">NEURAL NODES</div>
-                <div class="text-3xl font-orbitron font-bold text-white">102.4 <span class="text-xs text-slate-400">Billion</span></div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
-                    <div class="bg-cyber-purple h-full w-[65%]"></div>
-                </div>
-            </div>
-            <div class="glass-card p-6 rounded-xl border border-slate-800">
-                <div class="text-cyber-pink text-sm font-mono mb-1">PROCESSING POWER</div>
-                <div class="text-3xl font-orbitron font-bold text-white">12.8 <span class="text-xs text-slate-400">PFLOPS</span></div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
-                    <div class="bg-cyber-pink h-full w-[92%]"></div>
-                </div>
-            </div>
-            <div class="glass-card p-6 rounded-xl border border-slate-800">
-                <div class="text-cyber-green text-sm font-mono mb-1">ACCURACY METRIC</div>
-                <div class="text-3xl font-orbitron font-bold text-white">99.88 <span class="text-xs text-slate-400">%</span></div>
-                <div class="w-full bg-slate-800 h-1.5 rounded-full mt-3 overflow-hidden">
-                    <div class="bg-cyber-green h-full w-[99%]"></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- System Architecture Section -->
-        <section id="architecture" class="space-y-10">
-            <div class="border-l-4 border-cyber-cyan pl-4">
-                <h2 class="font-orbitron text-2xl md:text-4xl font-bold uppercase text-white">
-                    System Foundation & Infrastructure
-                </h2>
-                <p class="text-slate-400 font-mono text-sm mt-1">Core architectural paradigms supporting AI execution environments.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyber-cyan/5 rounded-bl-full pointer-events-none"></div>
-                    <div class="w-12 h-12 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/40 text-cyber-cyan flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-server"></i>
-                    </div>
-                    <h3 class="font-orbitron font-bold text-xl text-white mb-3">Distributed Processing</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        High-throughput cluster systems partitioning neural network computations across multi-GPU nodes using parallelized tensor streaming protocols.
-                    </p>
-                    <ul class="text-xs font-mono space-y-2 text-slate-300 border-t border-slate-800 pt-4">
-                        <li class="flex items-center"><i class="fa-solid fa-angle-right text-cyber-cyan mr-2"></i> Low-latency RDMA networking</li>
-                        <li class="flex items-center"><i class="fa-solid fa-angle-right text-cyber-cyan mr-2"></i> Dynamic workload sharding</li>
-                    </ul>
+            <div class="max-w-4xl mx-auto text-center relative z-10 space-y-8">
+                <div class="inline-block px-4 py-1 rounded-full border border-neutral-800 bg-neutral-900/60 text-neutral-400 text-xs tracking-[0.3em] font-cinzel uppercase">
+                    Monochrome Sanctuary // Shadow Realm
                 </div>
 
-                <!-- Card 2 -->
-                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyber-purple/5 rounded-bl-full pointer-events-none"></div>
-                    <div class="w-12 h-12 rounded-xl bg-cyber-purple/10 border border-cyber-purple/40 text-cyber-purple flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <h3 class="font-orbitron font-bold text-xl text-white mb-3">Neuromorphic Hardware</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Next-generation silicon mimicking human biological synaptic architecture to reduce energy consumption by up to 100x during model inference.
-                    </p>
-                    <ul class="text-xs font-mono space-y-2 text-slate-300 border-t border-slate-800 pt-4">
-                        <li class="flex items-center"><i class="fa-solid fa-angle-right text-cyber-purple mr-2"></i> Event-driven computing</li>
-                        <li class="flex items-center"><i class="fa-solid fa-angle-right text-cyber-purple mr-2"></i> Spiking Neural Nets (SNN)</li>
-                    </ul>
-                </div>
+                <h1 class="font-cinzel text-4xl sm:text-6xl md:text-8xl font-black text-neutral-100 tracking-wider uppercase leading-none">
+                    VOICES IN THE <br>
+                    <span class="text-stroke tracking-widest">FROZEN SHADOW</span>
+                </h1>
 
-                <!-- Card 3 -->
-                <div class="glass-card p-8 rounded-2xl relative overflow-hidden group">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-cyber-pink/5 rounded-bl-full pointer-events-none"></div>
-                    <div class="w-12 h-12 rounded-xl bg-cyber-pink/10 border border-cyber-pink/40 text-cyber-pink flex items-center justify-center text-xl mb-6">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="font-orbitron font-bold text-xl text-white mb-3">Autonomous System Safety</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-4">
-                        Real-time telemetry, model alignment guardrails, and anomaly detection protocols preventing system hallucination and data poisoning.
-                    </p>
-                    <ul class="text-xs font-mono space-y-2 text-slate-300 border-t border-slate-800 pt-4">
-                        <li class="flex items-center"><i class="fa-solid fa-angle-right text-cyber-pink mr-2"></i> Zero-Trust Neural Verification</li>
-                        <li class="flex items-center"><i class="fa-solid fa-angle-right text-cyber-pink mr-2"></i> Automated Prompt Guardrails</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+                <p class="font-playfair italic text-lg md:text-2xl text-neutral-400 max-w-2xl mx-auto font-light leading-relaxed">
+                    "When the icy winds sweep through the barren pine, only the howl of the solitary wolf remains to bridge the living and the forgotten."
+                </p>
 
-        <!-- Artificial Intelligence Section -->
-        <section id="intelligence" class="space-y-10">
-            <div class="border-l-4 border-cyber-purple pl-4">
-                <h2 class="font-orbitron text-2xl md:text-4xl font-bold uppercase text-white">
-                    Artificial Intelligence Horizons
-                </h2>
-                <p class="text-slate-400 font-mono text-sm mt-1">From perception models to autonomous agent decision frameworks.</p>
-            </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="glass-panel p-8 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="px-3 py-1 rounded bg-cyber-cyan/20 text-cyber-cyan font-mono text-xs border border-cyber-cyan/30">MODULE 01</span>
-                            <h3 class="font-orbitron font-bold text-2xl text-white">Large Language & Multimodal Models</h3>
-                        </div>
-                        <p class="text-slate-300 text-base leading-relaxed mb-6">
-                            Transformers have revolutionized natural language processing and multimodal cognitive synthesis. By utilizing attention mechanisms, models contextually process text, speech, audio, and visual data simultaneously.
-                        </p>
-                        <div class="space-y-3 font-mono text-xs">
-                            <div class="flex justify-between text-slate-400">
-                                <span>Attention Mechanism Vectoring</span>
-                                <span class="text-cyber-cyan">Optimized</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full">
-                                <div class="bg-gradient-to-r from-cyber-cyan to-cyber-purple h-full rounded-full w-[94%]"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-panel p-8 rounded-2xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center space-x-3 mb-4">
-                            <span class="px-3 py-1 rounded bg-cyber-pink/20 text-cyber-pink font-mono text-xs border border-cyber-pink/30">MODULE 02</span>
-                            <h3 class="font-orbitron font-bold text-2xl text-white">Agentic Orchestration</h3>
-                        </div>
-                        <p class="text-slate-300 text-base leading-relaxed mb-6">
-                            Autonomous AI agents capable of planning, using external tools, executing code, and iteratively reasoning through multi-step challenges without direct human oversight.
-                        </p>
-                        <div class="space-y-3 font-mono text-xs">
-                            <div class="flex justify-between text-slate-400">
-                                <span>Multi-Agent Swarm Efficiency</span>
-                                <span class="text-cyber-pink">98.2% Sync</span>
-                            </div>
-                            <div class="w-full bg-slate-800 h-2 rounded-full">
-                                <div class="bg-gradient-to-r from-cyber-purple to-cyber-pink h-full rounded-full w-[88%]"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Interactive AI Diagnostic Terminal -->
-        <section id="terminal" class="space-y-6">
-            <div class="border-l-4 border-cyber-green pl-4">
-                <h2 class="font-orbitron text-2xl md:text-4xl font-bold uppercase text-white">
-                    Interactive Neural Console
-                </h2>
-                <p class="text-slate-400 font-mono text-sm mt-1">Execute systemic diagnostic commands or query the AI system kernel.</p>
-            </div>
-
-            <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 font-mono">
-                <!-- Terminal Header -->
-                <div class="bg-slate-900/90 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                        <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                        <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-                        <span class="text-xs text-slate-400 ml-2">sysadmin@neuro-core:~$</span>
-                    </div>
-                    <div class="text-xs text-slate-500">v4.09-AI-KERNEL</div>
-                </div>
-
-                <!-- Terminal Body -->
-                <div id="terminalBody" class="p-6 h-64 overflow-y-auto space-y-3 text-sm text-slate-300 bg-black/40">
-                    <div><span class="text-cyber-green">[SYSTEM ROOT]:</span> Initializing Synapse.AI kernel services...</div>
-                    <div><span class="text-cyber-cyan">[NEURAL CORE]:</span> Synaptic matrices mapped. Type <span class="text-yellow-400 font-bold">'help'</span> to display list of available diagnostic triggers.</div>
-                </div>
-
-                <!-- Terminal Input -->
-                <form id="terminalForm" class="p-3 bg-slate-900/60 border-t border-slate-800 flex items-center space-x-3">
-                    <span class="text-cyber-cyan font-bold pl-2">&gt;</span>
-                    <input type="text" id="terminalInput" placeholder="Type a command (e.g. 'help', 'status', 'ai-scan', 'clear')..." class="w-full bg-transparent border-none text-slate-200 text-sm focus:outline-none font-mono">
-                    <button type="submit" class="px-4 py-1.5 rounded bg-cyber-cyan/20 border border-cyber-cyan/40 text-cyber-cyan text-xs font-orbitron hover:bg-cyber-cyan hover:text-black transition-colors">
-                        EXECUTE
+                <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <button id="heroPlayTrigger" class="w-full sm:w-auto px-8 py-4 bg-neutral-100 hover:bg-neutral-300 text-black font-cinzel text-xs font-bold tracking-[0.25em] uppercase rounded-none transition-all transform hover:-translate-y-0.5 shadow-2xl flex items-center justify-center space-x-3">
+                        <i class="fa-solid fa-play text-sm"></i>
+                        <span>COMMENCE AUDIO RECITATION</span>
                     </button>
-                </form>
+                    
+                    <a href="#gallery" class="w-full sm:w-auto px-8 py-4 bg-transparent hover:bg-neutral-900/80 text-neutral-300 border border-neutral-700 font-cinzel text-xs font-bold tracking-[0.25em] uppercase rounded-none transition-all text-center">
+                        EXPLORE VISAGES
+                    </a>
+                </div>
+
+                <!-- Ambient Stats / Status -->
+                <div class="grid grid-cols-3 gap-4 pt-12 border-t border-neutral-900 max-w-xl mx-auto text-center font-cinzel text-xs tracking-widest text-neutral-500">
+                    <div>
+                        <span class="block text-neutral-200 text-lg font-bold">CANIS</span>
+                        LUPUS
+                    </div>
+                    <div>
+                        <span class="block text-neutral-200 text-lg font-bold">MONO</span>
+                        SERIOUS & HAUNTING
+                    </div>
+                    <div>
+                        <span id="audioStateLabel" class="block text-neutral-200 text-lg font-bold">PAUSED</span>
+                        ECHO STATUS
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visages Showcase Gallery (Using User Provided Photos) -->
+        <section id="gallery" class="py-24 px-6 max-w-7xl mx-auto border-t border-neutral-900">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="font-cinzel text-3xl md:text-5xl font-bold tracking-widest text-neutral-100 uppercase">
+                    VISAGES OF THE ALPHA
+                </h2>
+                <div class="w-16 h-0.5 bg-neutral-700 mx-auto"></div>
+                <p class="font-playfair italic text-neutral-400 text-sm md:text-base">
+                    Captured moments of quiet ferocity and eternal watchful eyes.
+                </p>
+            </div>
+
+            <!-- Two Main Featured Images Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                
+                <!-- Wolf Photo 1 (biji.jpg) -->
+                <div class="group relative bg-neutral-900/50 border border-neutral-800 p-4 rounded-sm overflow-hidden shadow-2xl hover:border-neutral-500 transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-neutral-950 flex items-center justify-center">
+                        <img 
+                            id="wolfImg1" 
+                            src="https://raw.githubusercontent.com/KADEKRANGGA/virus/c3eacb975b381fc3445ca4d507ca5fab6ec5e7bf/biji.jpg" 
+                            alt="Wolf Visage I" 
+                            class="mono-image w-full h-full object-cover cursor-pointer"
+                            onclick="openLightbox(this.src, 'Visage I: The Solemn Guardian')"
+                            onerror="handleImgError(this, 'biji.jpg')"
+                        />
+                        <!-- Subtle corner borders -->
+                        <div class="absolute top-2 left-2 w-4 h-4 border-t border-l border-neutral-400/50 pointer-events-none"></div>
+                        <div class="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-neutral-400/50 pointer-events-none"></div>
+                    </div>
+
+                    <div class="mt-6 flex justify-between items-end">
+                        <div>
+                            <span class="text-[10px] font-cinzel tracking-[0.3em] text-neutral-500 uppercase block">SPECIMEN // 001</span>
+                            <h3 class="font-cinzel text-xl font-bold text-neutral-200 tracking-wider mt-1">VISAGE I: SOLEMN GUARDIAN</h3>
+                        </div>
+                        <button onclick="openLightbox(document.getElementById('wolfImg1').src, 'Visage I: The Solemn Guardian')" class="p-3 bg-neutral-800 hover:bg-neutral-100 hover:text-black text-neutral-300 transition-colors rounded-none">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wolf Photo 2 (bijiz.jpg) -->
+                <div class="group relative bg-neutral-900/50 border border-neutral-800 p-4 rounded-sm overflow-hidden shadow-2xl hover:border-neutral-500 transition-all duration-500">
+                    <div class="relative overflow-hidden aspect-[4/5] bg-neutral-950 flex items-center justify-center">
+                        <img 
+                            id="wolfImg2" 
+                            src="https://raw.githubusercontent.com/KADEKRANGGA/virus/c3eacb975b381fc3445ca4d507ca5fab6ec5e7bf/bijiz.jpg" 
+                            alt="Wolf Visage II" 
+                            class="mono-image w-full h-full object-cover cursor-pointer"
+                            onclick="openLightbox(this.src, 'Visage II: Shadows in Solitude')"
+                            onerror="handleImgError(this, 'bijiz.jpg')"
+                        />
+                        <!-- Subtle corner borders -->
+                        <div class="absolute top-2 left-2 w-4 h-4 border-t border-l border-neutral-400/50 pointer-events-none"></div>
+                        <div class="absolute bottom-2 right-2 w-4 h-4 border-b border-r border-neutral-400/50 pointer-events-none"></div>
+                    </div>
+
+                    <div class="mt-6 flex justify-between items-end">
+                        <div>
+                            <span class="text-[10px] font-cinzel tracking-[0.3em] text-neutral-500 uppercase block">SPECIMEN // 002</span>
+                            <h3 class="font-cinzel text-xl font-bold text-neutral-200 tracking-wider mt-1">VISAGE II: SHADOWS IN SOLITUDE</h3>
+                        </div>
+                        <button onclick="openLightbox(document.getElementById('wolfImg2').src, 'Visage II: Shadows in Solitude')" class="p-3 bg-neutral-800 hover:bg-neutral-100 hover:text-black text-neutral-300 transition-colors rounded-none">
+                            <i class="fa-solid fa-expand text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Audio Spectrum & Visualizer Interactive Display -->
+        <section id="audio-section" class="py-20 px-6 max-w-7xl mx-auto border-t border-neutral-900">
+            <div class="bg-neutral-900/40 border border-neutral-800 p-8 rounded-sm relative overflow-hidden">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                    <div>
+                        <span class="text-xs font-cinzel tracking-[0.3em] text-neutral-500 uppercase">RECITATION SOUNDTRACK</span>
+                        <h2 class="font-cinzel text-2xl md:text-4xl font-extrabold text-neutral-100 tracking-wide mt-1">
+                            BRING ME TO LIFE <span class="text-neutral-500 font-light text-xl">(COVER)</span>
+                        </h2>
+                        <p class="font-sans text-xs text-neutral-400 tracking-wider mt-2">
+                            Performers: <span class="text-neutral-200">CerberVT & Evil Neurosama</span> | Cover by Unwanted Cabbage
+                        </p>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <button id="sectionPlayBtn" class="px-6 py-3 bg-neutral-100 hover:bg-neutral-300 text-black font-cinzel text-xs font-bold tracking-[0.2em] uppercase transition-all flex items-center space-x-3 shadow-lg">
+                            <i id="sectionPlayIcon" class="fa-solid fa-play"></i>
+                            <span id="sectionPlayText">PLAY AUDIO</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Custom Spectrum Visualizer Box -->
+                <div class="relative w-full h-36 bg-black border border-neutral-800 flex items-end justify-between px-2 py-4 gap-1 overflow-hidden" id="spectrumContainer">
+                    <div id="visualizerBars" class="w-full h-full flex items-end justify-between gap-1">
+                        <!-- Dynamic JavaScript Generated Visualizer Bars -->
+                    </div>
+                    <div class="absolute top-3 left-4 text-[10px] font-cinzel tracking-widest text-neutral-600 uppercase pointer-events-none">
+                        FREQUENCY SPECTRUM ANALYSIS // MONO WAVEFORM
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Haunting Wolf Lore & Poetry -->
+        <section id="lore" class="py-24 px-6 max-w-5xl mx-auto border-t border-neutral-900">
+            <div class="text-center space-y-4 mb-16">
+                <h2 class="font-cinzel text-3xl md:text-4xl font-bold tracking-widest text-neutral-100 uppercase">
+                    ECHOES OF THE WILD
+                </h2>
+                <div class="w-12 h-0.5 bg-neutral-700 mx-auto"></div>
+                <p class="font-playfair italic text-neutral-400 text-sm">
+                    Reflections on instinct, isolation, and the unyielding night.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-neutral-900/30 border border-neutral-800/80 hover:border-neutral-600 transition-all space-y-4">
+                    <i class="fa-solid fa-moon text-neutral-500 text-xl"></i>
+                    <h3 class="font-cinzel text-lg font-bold text-neutral-200 tracking-wider">THE MONOLITHIC NIGHT</h3>
+                    <p class="font-sans text-xs text-neutral-400 leading-relaxed font-light">
+                        In the dark stillness of winter, the wolf does not ask for daylight. It becomes the shadow itself, moving unburdened through freezing woods where silence holds absolute reign.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-neutral-900/30 border border-neutral-800/80 hover:border-neutral-600 transition-all space-y-4">
+                    <i class="fa-solid fa-eye text-neutral-500 text-xl"></i>
+                    <h3 class="font-cinzel text-lg font-bold text-neutral-200 tracking-wider">GAZE OF THE ALPHA</h3>
+                    <p class="font-sans text-xs text-neutral-400 leading-relaxed font-light">
+                        Eyes unblinking in the frost. A silent promise that no path goes unwatched, and no prey escapes the enduring patience of the wolf who knows how to endure the blizzard.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-neutral-900/30 border border-neutral-800/80 hover:border-neutral-600 transition-all space-y-4">
+                    <i class="fa-solid fa-wind text-neutral-500 text-xl"></i>
+                    <h3 class="font-cinzel text-lg font-bold text-neutral-200 tracking-wider">SOLITUDE's SONG</h3>
+                    <p class="font-sans text-xs text-neutral-400 leading-relaxed font-light">
+                        To howl is not a cry for mercy—it is an declaration of existence. An echo echoing across snowy mountain crests, carrying messages across infinite miles of void.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Haunting Quote Box -->
+            <div class="mt-16 p-8 bg-neutral-950 border-l-2 border-neutral-400 text-center space-y-4">
+                <p class="font-playfair italic text-xl text-neutral-200">
+                    "For the strength of the Pack is the Wolf, and the strength of the Wolf is the Pack."
+                </p>
+                <span class="block font-cinzel text-xs tracking-[0.3em] text-neutral-500 uppercase">— Rudyard Kipling // Shadows of the North</span>
             </div>
         </section>
 
     </main>
 
-    <!-- Floating Audio Player Bar Widget -->
-    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-[92%] max-w-2xl">
-        <div class="glass-panel p-4 rounded-2xl border border-cyber-cyan/40 shadow-[0_10px_30px_rgba(0,0,0,0.8)] backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-4">
+    <!-- Sticky Music Player Dock at Bottom -->
+    <div id="playerDock" class="fixed bottom-0 left-0 w-full z-50 bg-neutral-950/95 backdrop-blur-xl border-t border-neutral-800 px-4 py-3 transition-transform duration-500">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
             
             <!-- Track Meta -->
-            <div class="flex items-center space-x-4 w-full md:w-auto">
-                <div class="relative w-12 h-12 rounded-xl bg-slate-900 border border-cyber-cyan/40 flex items-center justify-center overflow-hidden flex-shrink-0 group">
-                    <i class="fa-solid fa-compact-disc text-cyber-cyan text-2xl animate-spin" style="animation-duration: 6s;"></i>
-                    <div class="absolute inset-0 bg-cyber-cyan/10"></div>
+            <div class="flex items-center space-x-4 w-full md:w-1/4">
+                <div class="w-10 h-10 bg-neutral-900 border border-neutral-700 flex items-center justify-center shrink-0">
+                    <i id="dockDiscIcon" class="fa-solid fa-compact-disc text-neutral-400 text-lg"></i>
                 </div>
-                <div class="overflow-hidden">
-                    <h4 id="songTitle" class="font-orbitron font-bold text-sm text-white truncate max-w-[200px]">VIRUS - Evil Neuro</h4>
-                    <p class="text-xs text-cyber-cyan font-mono truncate">White_fishy (Fans Animation)</p>
+                <div class="truncate">
+                    <h4 class="font-cinzel text-xs font-bold text-neutral-100 truncate tracking-wide">BRING ME TO LIFE</h4>
+                    <p class="text-[10px] text-neutral-400 font-sans truncate">CerberVT & Evil Neurosama (Cover)</p>
                 </div>
-            </div>
-
-            <!-- Audio Equalizer Animated Visual -->
-            <div class="hidden sm:flex items-end space-x-1 h-6 px-2">
-                <div class="w-1 bg-cyber-cyan/60 rounded-full eq-bar" style="animation-delay: 0.1s;"></div>
-                <div class="w-1 bg-cyber-cyan rounded-full eq-bar" style="animation-delay: 0.3s;"></div>
-                <div class="w-1 bg-cyber-purple rounded-full eq-bar" style="animation-delay: 0.2s;"></div>
-                <div class="w-1 bg-cyber-pink rounded-full eq-bar" style="animation-delay: 0.5s;"></div>
-                <div class="w-1 bg-cyber-cyan rounded-full eq-bar" style="animation-delay: 0.4s;"></div>
             </div>
 
             <!-- Controls & Progress -->
-            <div class="flex items-center space-x-4 w-full md:w-auto justify-between md:justify-end">
-                
-                <!-- Play/Pause Button -->
-                <button id="playPauseBtn" class="w-10 h-10 rounded-full bg-cyber-cyan text-black flex items-center justify-center font-bold text-base shadow-[0_0_15px_rgba(0,240,255,0.5)] hover:scale-105 active:scale-95 transition-all flex-shrink-0">
-                    <i id="playIcon" class="fa-solid fa-play ml-0.5"></i>
-                </button>
+            <div class="flex flex-col items-center w-full md:w-2/4 space-y-1.5">
+                <div class="flex items-center space-x-6">
+                    <button id="rewindBtn" class="text-neutral-400 hover:text-white text-xs transition-colors" title="Rewind 10s">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
 
-                <!-- Track Bar & Time -->
-                <div class="flex flex-col space-y-1 w-full max-w-[180px]">
-                    <input type="range" id="seekSlider" value="0" min="0" max="100" class="w-full h-1 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-cyber-cyan">
-                    <div class="flex justify-between text-[10px] font-mono text-slate-400">
-                        <span id="currentTime">00:00</span>
-                        <span id="durationTime">00:00</span>
-                    </div>
+                    <button id="mainPlayBtn" class="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-300 text-black flex items-center justify-center transition-all transform hover:scale-105 shadow-xl">
+                        <i id="mainPlayIcon" class="fa-solid fa-play text-sm ml-0.5"></i>
+                    </button>
+
+                    <button id="forwardBtn" class="text-neutral-400 hover:text-white text-xs transition-colors" title="Forward 10s">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
                 </div>
 
-                <!-- Volume Mute Toggle -->
-                <button id="volumeBtn" class="text-slate-400 hover:text-cyber-cyan transition-colors text-sm">
-                    <i id="volumeIcon" class="fa-solid fa-volume-high"></i>
+                <!-- Scrubber -->
+                <div class="w-full flex items-center space-x-3 text-[10px] font-mono text-neutral-500">
+                    <span id="currentTime">00:00</span>
+                    <input id="seekBar" type="range" min="0" max="100" value="0" class="w-full">
+                    <span id="durationTime">00:00</span>
+                </div>
+            </div>
+
+            <!-- Volume & Extra Tools -->
+            <div class="flex items-center justify-end space-x-4 w-full md:w-1/4">
+                <div class="flex items-center space-x-2">
+                    <button id="muteBtn" class="text-neutral-400 hover:text-white text-xs">
+                        <i id="muteIcon" class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <input id="volumeSlider" type="range" min="0" max="1" step="0.01" value="0.8" class="w-20">
+                </div>
+                
+                <button id="toggleFogBtn" class="text-xs text-neutral-400 hover:text-white font-cinzel border border-neutral-800 px-2 py-1 rounded" title="Toggle Atmospheric Fog">
+                    <i class="fa-solid fa-smog"></i>
                 </button>
             </div>
 
         </div>
     </div>
 
-    <!-- Hidden HTML5 Audio Element using Raw GitHub audio URL -->
-    <audio id="bgAudio" preload="metadata">
-        <source src="https://raw.githubusercontent.com/KADEKRANGGA/virus/96536da3f103afdd1fd586df13c72149b87a55e6/VIRUS%20-%20Evil%20Neuro%20(fans%20animation)%20-%20%E5%B0%8F%E7%95%AB%E5%AE%B6%E7%99%BD%E9%AD%9AWhite_fishy.mp3" type="audio/mpeg">
+    <!-- Hidden HTML5 Audio Element -->
+    <audio id="wolfAudio" preload="metadata" crossorigin="anonymous">
+        <source src="https://raw.githubusercontent.com/KADEKRANGGA/virus/c3eacb975b381fc3445ca4d507ca5fab6ec5e7bf/CerberVT%20%26%20Evil%20Neurosama%20-EMO-%20Bring%20me%20to%20Life%20by%20Evanescence%20(Karaoke%20Cover)%20-%20Unwanted%20Cabbage.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
 
-    <!-- Page Footer -->
-    <footer class="border-t border-slate-800/80 bg-slate-950 py-8 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 text-center text-xs font-mono text-slate-500 space-y-2">
-            <p>SYNAPSE.AI — ADVANCED SYSTEM & AI CORE DEMO</p>
-            <p class="text-slate-600">Built for seamless web integration and futuristic visualization.</p>
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg hidden flex flex-col items-center justify-center p-6">
+        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-neutral-400 hover:text-white text-2xl font-bold">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="max-w-4xl max-h-[80vh] relative p-2 border border-neutral-800 bg-neutral-950">
+            <img id="lightboxImg" src="" alt="Wolf Preview" class="max-h-[75vh] w-auto object-contain mono-image">
         </div>
+
+        <p id="lightboxCaption" class="mt-4 font-cinzel text-neutral-300 text-sm tracking-widest uppercase"></p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-neutral-900 text-center font-cinzel text-xs text-neutral-600 tracking-widest mb-16">
+        <p>MONOCHROME WOLF SANCTUARY // ETERNAL SHADOWS &copy; 2026</p>
     </footer>
 
-    <!-- JavaScript Logic -->
     <script>
-        // --- 1. Audio Player Logic ---
-        const audio = document.getElementById('bgAudio');
-        const playPauseBtn = document.getElementById('playPauseBtn');
-        const playIcon = document.getElementById('playIcon');
-        const seekSlider = document.getElementById('seekSlider');
+        // DOM Elements
+        const audio = document.getElementById('wolfAudio');
+        const mainPlayBtn = document.getElementById('mainPlayBtn');
+        const mainPlayIcon = document.getElementById('mainPlayIcon');
+        const quickPlayBtn = document.getElementById('quickPlayBtn');
+        const quickPlayIcon = document.getElementById('quickPlayIcon');
+        const quickPlayText = document.getElementById('quickPlayText');
+        const sectionPlayBtn = document.getElementById('sectionPlayBtn');
+        const sectionPlayIcon = document.getElementById('sectionPlayIcon');
+        const sectionPlayText = document.getElementById('sectionPlayText');
+        const heroPlayTrigger = document.getElementById('heroPlayTrigger');
+        const audioStateLabel = document.getElementById('audioStateLabel');
+        const dockDiscIcon = document.getElementById('dockDiscIcon');
+
+        const seekBar = document.getElementById('seekBar');
         const currentTimeEl = document.getElementById('currentTime');
         const durationTimeEl = document.getElementById('durationTime');
-        const volumeBtn = document.getElementById('volumeBtn');
-        const volumeIcon = document.getElementById('volumeIcon');
-        const eqBars = document.querySelectorAll('.eq-bar');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const muteBtn = document.getElementById('muteBtn');
+        const muteIcon = document.getElementById('muteIcon');
+        const rewindBtn = document.getElementById('rewindBtn');
+        const forwardBtn = document.getElementById('forwardBtn');
 
-        // Toggle Play / Pause
-        function togglePlay() {
-            if (audio.paused) {
-                audio.play().then(() => {
-                    playIcon.className = 'fa-solid fa-pause';
-                    setEqState(true);
-                }).catch(err => {
-                    console.error("Audio playback error:", err);
-                });
-            } else {
-                audio.pause();
-                playIcon.className = 'fa-solid fa-play ml-0.5';
-                setEqState(false);
+        // Canvas Setup for Particles & Atmospheric Smoke
+        const canvas = document.getElementById('atmosphereCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let isFogActive = true;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Particle System
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = -Math.random() * 0.4 - 0.1;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.y < 0 || this.x < 0 || this.x > canvas.width) {
+                    this.reset();
+                    this.y = canvas.height;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(220, 220, 220, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
             }
         }
 
-        function setEqState(isPlaying) {
-            eqBars.forEach(bar => {
-                bar.style.animationPlayState = isPlaying ? 'running' : 'paused';
-            });
+        for (let i = 0; i < 70; i++) {
+            particles.push(new Particle());
         }
 
-        // Initially pause EQ animation
-        setEqState(false);
+        // Visualizer Generator Bars
+        const visualizerBarsContainer = document.getElementById('visualizerBars');
+        const barCount = 48;
+        const barElements = [];
 
-        playPauseBtn.addEventListener('click', togglePlay);
+        for (let i = 0; i < barCount; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'w-full bg-neutral-600/70 transition-all duration-75';
+            bar.style.height = '10%';
+            visualizerBarsContainer.appendChild(bar);
+            barElements.push(bar);
+        }
 
-        // Format Seconds to MM:SS
+        // Web Audio API Setup
+        let audioCtx, analyser, dataArray;
+        let isAudioSetup = false;
+
+        function setupWebAudio() {
+            if (isAudioSetup) return;
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContext();
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 128;
+                
+                const source = audioCtx.createMediaElementSource(audio);
+                source.connect(analyser);
+                analyser.connect(audioCtx.destination);
+                
+                dataArray = new Uint8Array(analyser.frequencyBinCount);
+                isAudioSetup = true;
+            } catch (e) {
+                console.log('Web Audio API initialized with simulated audio visualizer fallback');
+            }
+        }
+
+        // Animation Loop for Particles & Visualizer
+        function animateAtmosphere() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (isFogActive) {
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+            }
+
+            // Visualizer logic
+            if (!audio.paused) {
+                if (isAudioSetup && analyser) {
+                    analyser.getByteFrequencyData(dataArray);
+                    for (let i = 0; i < barCount; i++) {
+                        const val = dataArray[i % dataArray.length] || 0;
+                        const heightPercent = Math.max(8, (val / 255) * 100);
+                        barElements[i].style.height = `${heightPercent}%`;
+                        barElements[i].style.backgroundColor = `rgba(${200 + val/5}, ${200 + val/5}, ${200 + val/5}, 0.8)`;
+                    }
+                } else {
+                    // Simulated rhythm visualizer if WebAudio node is restricted by cross-origin
+                    for (let i = 0; i < barCount; i++) {
+                        const randomVal = Math.sin(Date.now() * 0.005 + i * 0.2) * 40 + 50 + (Math.random() * 20);
+                        barElements[i].style.height = `${Math.min(100, Math.max(10, randomVal))}%`;
+                        barElements[i].style.backgroundColor = '#ffffff';
+                    }
+                }
+            } else {
+                // Idle pulse visualizer when paused
+                for (let i = 0; i < barCount; i++) {
+                    const idleVal = Math.sin(Date.now() * 0.002 + i * 0.15) * 10 + 15;
+                    barElements[i].style.height = `${idleVal}%`;
+                    barElements[i].style.backgroundColor = 'rgba(100, 100, 100, 0.4)';
+                }
+            }
+
+            requestAnimationFrame(animateAtmosphere);
+        }
+        animateAtmosphere();
+
+        // Audio Toggle Functionality
+        function togglePlay() {
+            setupWebAudio();
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            if (audio.paused) {
+                audio.play().then(() => {
+                    updateUIState(true);
+                }).catch(err => {
+                    console.log("Playback error, retrying...", err);
+                });
+            } else {
+                audio.pause();
+                updateUIState(false);
+            }
+        }
+
+        function updateUIState(isPlaying) {
+            if (isPlaying) {
+                mainPlayIcon.className = 'fa-solid fa-pause text-sm';
+                quickPlayIcon.className = 'fa-solid fa-pause';
+                quickPlayText.textContent = 'PAUSE SOUND';
+                sectionPlayIcon.className = 'fa-solid fa-pause';
+                sectionPlayText.textContent = 'PAUSE AUDIO';
+                audioStateLabel.textContent = 'RECITING';
+                dockDiscIcon.classList.add('animate-spin');
+            } else {
+                mainPlayIcon.className = 'fa-solid fa-play text-sm ml-0.5';
+                quickPlayIcon.className = 'fa-solid fa-play';
+                quickPlayText.textContent = 'UNSEAL SOUND';
+                sectionPlayIcon.className = 'fa-solid fa-play';
+                sectionPlayText.textContent = 'PLAY AUDIO';
+                audioStateLabel.textContent = 'PAUSED';
+                dockDiscIcon.classList.remove('animate-spin');
+            }
+        }
+
+        // Audio Time Format Helper
         function formatTime(seconds) {
             if (isNaN(seconds)) return "00:00";
             const mins = Math.floor(seconds / 60);
@@ -474,166 +653,93 @@
             return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
         }
 
-        // Update Duration once metadata is loaded
+        // Audio Event Listeners
+        audio.addEventListener('timeupdate', () => {
+            if (!isNaN(audio.duration)) {
+                const progress = (audio.currentTime / audio.duration) * 100;
+                seekBar.value = progress;
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+                durationTimeEl.textContent = formatTime(audio.duration);
+            }
+        });
+
         audio.addEventListener('loadedmetadata', () => {
             durationTimeEl.textContent = formatTime(audio.duration);
         });
 
-        // Time Update
-        audio.addEventListener('timeupdate', () => {
+        audio.addEventListener('ended', () => {
+            updateUIState(false);
+            seekBar.value = 0;
+        });
+
+        seekBar.addEventListener('input', () => {
             if (!isNaN(audio.duration)) {
-                const progress = (audio.currentTime / audio.duration) * 100;
-                seekSlider.value = progress;
-                currentTimeEl.textContent = formatTime(audio.currentTime);
+                audio.currentTime = (seekBar.value / 100) * audio.duration;
             }
         });
 
-        // Seek Audio
-        seekSlider.addEventListener('input', () => {
-            if (!isNaN(audio.duration)) {
-                const seekTo = (seekSlider.value / 100) * audio.duration;
-                audio.currentTime = seekTo;
-            }
-        });
-
-        // Mute Toggle
-        volumeBtn.addEventListener('click', () => {
-            audio.muted = !audio.muted;
-            if (audio.muted) {
-                volumeIcon.className = 'fa-solid fa-volume-xmark text-red-400';
+        volumeSlider.addEventListener('input', (e) => {
+            audio.volume = e.target.value;
+            if (audio.volume === 0) {
+                muteIcon.className = 'fa-solid fa-volume-xmark';
             } else {
-                volumeIcon.className = 'fa-solid fa-volume-high';
+                muteIcon.className = 'fa-solid fa-volume-high';
             }
         });
 
-        // --- 2. Interactive Terminal Engine ---
-        const terminalForm = document.getElementById('terminalForm');
-        const terminalInput = document.getElementById('terminalInput');
-        const terminalBody = document.getElementById('terminalBody');
-
-        terminalForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const cmd = terminalInput.value.trim().toLowerCase();
-            if (!cmd) return;
-
-            // Append User Command
-            appendLog(`sysadmin@neuro-core:~$ ${cmd}`, 'text-cyber-cyan');
-            terminalInput.value = '';
-
-            // Process Commands
-            setTimeout(() => {
-                switch (cmd) {
-                    case 'help':
-                        appendLog('Available commands: status, ai-scan, audio, clear, ping, system-info', 'text-yellow-400');
-                        break;
-                    case 'status':
-                        appendLog('ALL SYSTEMS OPERATIONAL | GPU Node 1: 34% | GPU Node 2: 41% | Latency: 0.4ms', 'text-emerald-400');
-                        break;
-                    case 'ai-scan':
-                        appendLog('Scanning neural network vectors...', 'text-slate-400');
-                        setTimeout(() => {
-                            appendLog('✓ Scan Complete: 102.4B weights validated. Zero anomalies detected.', 'text-cyber-pink');
-                        }, 600);
-                        break;
-                    case 'audio':
-                        appendLog(`Current Track: "VIRUS - Evil Neuro (White_fishy Animation)". Audio state: ${audio.paused ? 'Paused' : 'Playing'}`, 'text-cyber-purple');
-                        break;
-                    case 'ping':
-                        appendLog('PONG! Response time: 0.02ms [Sub-quantum link active]', 'text-cyber-green');
-                        break;
-                    case 'system-info':
-                        appendLog('SYNAPSE.AI Kernel v4.09 | Architecture: Heterogeneous Neural Cluster', 'text-slate-300');
-                        break;
-                    case 'clear':
-                        terminalBody.innerHTML = '';
-                        break;
-                    default:
-                        appendLog(`Command not recognized: '${cmd}'. Type 'help' for options.`, 'text-red-400');
-                }
-                terminalBody.scrollTop = terminalBody.scrollHeight;
-            }, 150);
+        muteBtn.addEventListener('click', () => {
+            if (audio.volume > 0) {
+                audio.dataset.prevVol = audio.volume;
+                audio.volume = 0;
+                volumeSlider.value = 0;
+                muteIcon.className = 'fa-solid fa-volume-xmark';
+            } else {
+                const prev = audio.dataset.prevVol || 0.8;
+                audio.volume = prev;
+                volumeSlider.value = prev;
+                muteIcon.className = 'fa-solid fa-volume-high';
+            }
         });
 
-        function appendLog(text, textClass = 'text-slate-300') {
-            const div = document.createElement('div');
-            div.className = textClass;
-            div.textContent = text;
-            terminalBody.appendChild(div);
-            terminalBody.scrollTop = terminalBody.scrollHeight;
+        rewindBtn.addEventListener('click', () => audio.currentTime = Math.max(0, audio.currentTime - 10));
+        forwardBtn.addEventListener('click', () => audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10));
+
+        // Click Handlers
+        mainPlayBtn.addEventListener('click', togglePlay);
+        quickPlayBtn.addEventListener('click', togglePlay);
+        sectionPlayBtn.addEventListener('click', togglePlay);
+        heroPlayTrigger.addEventListener('click', togglePlay);
+
+        // Toggle Fog Particle Canvas
+        document.getElementById('toggleFogBtn').addEventListener('click', () => {
+            isFogActive = !isFogActive;
+            const btn = document.getElementById('toggleFogBtn');
+            btn.classList.toggle('text-white');
+            btn.classList.toggle('bg-neutral-800');
+        });
+
+        // Lightbox Functions
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightbox');
+            const img = document.getElementById('lightboxImg');
+            const cap = document.getElementById('lightboxCaption');
+            img.src = src;
+            cap.textContent = caption;
+            modal.classList.remove('hidden');
         }
 
-
-        // --- 3. Neural Canvas Background Animation ---
-        const canvas = document.getElementById('neuralCanvas');
-        const ctx = canvas.getContext('2d');
-
-        let particles = [];
-        const particleCount = 45;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
         }
 
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
-                this.radius = Math.random() * 2 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = '#00f0ff';
-                ctx.fill();
+        // Image Fallback Handling for GitHub Blob vs Raw URLs
+        function handleImgError(imgElement, filename) {
+            if (filename === 'biji.jpg') {
+                imgElement.src = 'https://github.com/KADEKRANGGA/virus/raw/c3eacb975b381fc3445ca4d507ca5fab6ec5e7bf/biji.jpg';
+            } else if (filename === 'bijiz.jpg') {
+                imgElement.src = 'https://github.com/KADEKRANGGA/virus/raw/c3eacb975b381fc3445ca4d507ca5fab6ec5e7bf/bijiz.jpg';
             }
         }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-
-                    if (dist < 150) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(0, 240, 255, ${1 - dist / 150})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            requestAnimationFrame(animateCanvas);
-        }
-
-        animateCanvas();
     </script>
 </body>
 </html>
